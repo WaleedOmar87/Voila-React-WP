@@ -1,0 +1,10 @@
+{
+  "name": "voila-react-wp",
+  "version": "1.0.0",
+  "description": "Front-end React SPA App With WordPress Integration",
+  "main": "src/index.js",
+  "repository": "https://github.com/WaleedOmar87/Voila-React-WP",
+  "author": "Waleed Omar",
+  "license": "MIT",
+  "private": false
+}

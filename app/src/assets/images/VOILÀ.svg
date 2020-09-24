@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70" height="24" viewBox="0 0 70 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2e2e2e;
+        font-size: 20px;
+        font-family: Montserrat-ExtraBold, Montserrat ExtraBold;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </defs>
+  <text id="VOILÀ" class="cls-1" transform="translate(1 19)"><tspan x="0" y="0">VOILÀ</tspan></text>
+</svg>

@@ -1,19 +1,20 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { fetchWidgets } from "../../functions/component-functions";
 
 export const Sidebar = () => {
-	const widgets = fetchWidgets("sidebar");
-
+	const [widgets, setWidgets] = useState([]);
+	useEffect(() => {
+		// fetch widgets content from the endpoint
+		fetchWidgets("sidebar-2").then((data) => {
+			if (data) {
+				setWidgets(data);
+			}
+		});
+	}, []);
 	return (
 		<aside className="sidebar">
-			{widgets.map((widget , index) => {
-				return (
-					<div key={index} className="widget-container">
-						<h4 className="widget-title">{widget.title}</h4>
-						<div className="widget-content">{widget.content}</div>
-					</div>
-				);
-			})}
+			{widgets}
 		</aside>
 	);
 };

@@ -1,5 +1,13 @@
 import React from "react";
+import ReactHtmlParser, {
+	processNodes,
+	convertNodeToElement,
+	htmlparser2,
+} from "react-html-parser";
+import DOMPurify from "dompurify";
 import { apiConfig } from "../config/api/api.config";
+import { parseQueryArguments } from "./common";
+
 
 /*
 	Fetch Navigation Menu Items
@@ -14,10 +22,8 @@ const fetchNavigationItems = () => {
 	@var queryArguments , fetch query , for reference https://developer.wordpress.org/rest-api/reference/posts/
 */
 const fetchPosts = (queryArguments) => {
-	// prepare query string from queryArguments
-	const queryString = Object.keys(queryArguments)
-		.map((arg) => `${arg}=${queryArguments[arg]}`)
-		.join("&");
+
+	const queryString = parseQueryArguments(queryArguments)
 
 	// prepare the endpoint to fetch posts based on queryString
 	const postsEndpoint = `${apiConfig.postsEndpoint}/?${queryString}`;
@@ -46,11 +52,23 @@ const fetchPosts = (queryArguments) => {
 Fetch Widgets Based On Sidebar ID
 */
 const fetchWidgets = (sidebarID) => {
-	return [
-		{
-			title: "about us widget",
-		},
-	];
+	return fetch(`${apiConfig.sidebarEndpoint}/${sidebarID}`)
+		.then((res) => res.json())
+		.then((data) => {
+			/*
+				Retrieve the data from endpoint , purify it and parse it
+			*/
+			const cleanData = DOMPurify.sanitize(data);
+			return ReactHtmlParser(cleanData);
+		});
 };
+
+/*
+Fetch Search Results
+* return list of search results based on search arguments
+*/
+const fetchSearch = (args) => {
+	return <div>Something</div>
+}
 
 export { fetchNavigationItems, fetchPosts, fetchWidgets };

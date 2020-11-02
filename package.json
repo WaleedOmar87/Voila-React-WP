@@ -6,5 +6,9 @@
   "repository": "https://github.com/WaleedOmar87/Voila-React-WP",
   "author": "Waleed Omar",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "dompurify": "^2.1.1",
+    "react-html-parser": "^2.0.2"
+  }
 }

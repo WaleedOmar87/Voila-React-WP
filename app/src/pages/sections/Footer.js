@@ -1,28 +1,23 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { fetchWidgets } from "../../functions/component-functions";
 
 export const Footer = (props) => {
-	/* Retrieve widgets from the endpoint */
-	const widgets = fetchWidgets("footer");
+	const [widgets, setWidgets] = useState(false);
+	useEffect(() => {
+		// fetch widgets content from the endpoint
+		fetchWidgets("sidebar-1").then((data) => {
+			if (data) {
+				setWidgets(data);
+			}
+		});
+	}, []);
 
 	return (
 		<footer className="footer" id="footer">
 			<div className="container">
 				<div className="row">
-					{widgets.map((widget , index) => {
-						return (
-							<div  key={index} className="col-6 col-md-3">
-								<div className="widget-container">
-									<h5 className="widget-title">
-										{widget.title}
-									</h5>
-									<div className="widget-content">
-										{widget.content}
-									</div>
-								</div>
-							</div>
-						);
-					})}
+					<div className="col">{widgets}</div>
 				</div>
 			</div>
 		</footer>
